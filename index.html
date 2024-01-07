@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Finder</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            width: 100%;
+        }
+
+        h1 {
+            margin-top: 10px;
+            font-size: 2em;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .search-section {
+            width: 45%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            margin: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            margin-top: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        h3 {
+            margin-top: 20px;
+            font-size: 1.5em;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        /* Additional styling for lyrics */
+        p.lyrics {
+            white-space: pre-line;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Song Finder</h1>
+    </header>
+
+    <div class="search-container">
+        <!-- Search by Lyrics Form -->
+        <div class="search-section">
+            <h2>Search Song With Lyrics</h2>
+            <form name="searchByLyrics" action="." method="post">
+                <label for="lyric">Enter Lyrics:</label>
+                <input type="text" name="lyric" placeholder="Lyrics">
+                <input type="submit" value="Search">
+            </form>
+
+            {% if info %}
+                <h3>Results</h3>
+                <p>{{ info }}</p>
+            {% endif %}
+        </div>
+
+        <!-- Search by Artist and Title Form -->
+        <div class="search-section">
+            <h2>Search Lyrics</h2>
+            <form name="searchByArtistTitle" action="." method="post">
+                <label for="artist">Enter Artist Name:</label>
+                <input type="text" name="artist" placeholder="Artist name">
+
+                <label for="title">Enter Song Name:</label>
+                <input type="text" name="title" placeholder="Song name">
+
+                <input type="submit" value="Search">
+            </form>
+
+            {% if artist and title and lyrics %}
+                <h3>Results</h3>
+                <p>Artist: {{ artist }}</p>
+                <p>Title: {{ title }}</p>
+                <p class="lyrics">Lyrics: {{ lyrics }}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
